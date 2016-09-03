@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="in.aviaryan.popularmovies.MainActivity">
+
+    <item
+        android:id="@+id/action_sort"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:title="@string/sort_by"
+        app:showAsAction="ifRoom">
+        <menu>
+            <group android:id="@+id/group_sortOrder"
+                   android:checkableBehavior="single">
+                <item
+                    android:id="@+id/action_sort_rating"
+                    android:title="@string/rating"/>
+                <item
+                    android:title="@string/popularity"
+                    android:id="@+id/action_sort_popularity"
+                    android:checked="true"/>
+                <item
+                    android:id="@+id/action_favorites"
+                    android:title="@string/favorites"/>
+            </group>
+        </menu>
+    </item>
+</menu>
