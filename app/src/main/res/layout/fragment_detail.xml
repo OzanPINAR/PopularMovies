@@ -16,7 +16,7 @@
         android:paddingStart="@dimen/detail_generic_spacing"
         android:paddingTop="30dp"
         android:paddingBottom="25dp"
-        android:text="Header Movie"/>
+        android:text="@string/movie_title"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -107,7 +107,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Reviews:"
+                android:text="@string/reviews"
                 android:layout_below="@+id/trailersList"
                 android:textSize="20sp"
                 android:id="@+id/reviewHeader"

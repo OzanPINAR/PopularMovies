@@ -12,4 +12,6 @@
     <string name="dd_mm_yyyy">DD MM YYYY</string>
     <string name="rating_movie">5.5/10</string>
     <string name="synopsis">synopsis</string>
+    <string name="reviews">Reviews:</string>
+    <string name="movie_title">Movie Title</string>
 </resources>

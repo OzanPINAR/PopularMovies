@@ -77,6 +77,8 @@ public class DetailActivityFragment extends Fragment {
         return curView;
     }
 
+
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -280,7 +282,7 @@ public class DetailActivityFragment extends Fragment {
                                 reviewsList.addView(view = createReviewView(review, i));
                                 collapseReviewView(view);
                             }
-                            // scroll saved
+
                             Log.v(LOG_TAG, "scroll " + scrollId);
                             if (scrollId != 0) {
                                 scrollView.post(new Runnable() {
