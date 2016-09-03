@@ -9,4 +9,7 @@
     <string name="videos">Videos:</string>
     <string name="more">More</string>
     <string name="less">Less</string>
+    <string name="dd_mm_yyyy">DD MM YYYY</string>
+    <string name="rating_movie">5.5/10</string>
+    <string name="synopsis">synopsis</string>
 </resources>
