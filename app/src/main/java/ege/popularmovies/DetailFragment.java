@@ -203,11 +203,11 @@ public class DetailFragment extends Fragment {
             if (mdb.isMovieFavorited(contentResolver, movie.id)){
                 message = "Removed from Favorites";
                 mdb.removeMovie(contentResolver, movie.id);
-                fab.setImageDrawable(ContextCompat.getDrawable(getActivity(), android.R.drawable.btn_star_big_off));
+                fab.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.heart));
             } else {
                 mdb.addMovie(contentResolver, movie);
                 message = "Added to favorites";
-                fab.setImageDrawable(ContextCompat.getDrawable(getActivity(), android.R.drawable.btn_star_big_on));
+                fab.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.like));
             }
             (MainActivityFragment.instance).updateFavoritesGrid();
             Snackbar snackbar = Snackbar
