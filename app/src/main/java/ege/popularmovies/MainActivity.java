@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.menu_main, menu);
         if (Id == 0){
             Id = R.id.action_sort_popularity;
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.action_sort_rating) {
             MainActivityFragment.sortOrder = "vote_average.desc";
-            MainActivityFragment.moreParams = "vote_count.gte=50&include_video=false"; // you don't want shows with few votes
+            MainActivityFragment.moreParams = "vote_count.gte=50&include_video=false";
         } else if (id == R.id.action_sort_popularity) {
             MainActivityFragment.sortOrder = "popularity.desc";
             MainActivityFragment.moreParams = "";

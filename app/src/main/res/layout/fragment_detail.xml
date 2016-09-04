@@ -2,7 +2,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="ege.popularmovies.DetailActivityFragment"
+                tools:context=".DetailFragment"
                 tools:showIn="@layout/activity_detail">
 
     <TextView
@@ -50,20 +50,21 @@
                 android:layout_toEndOf="@+id/posterImageView"
                 android:layout_marginLeft="@dimen/detail_generic_spacing"
                 android:layout_marginStart="@dimen/detail_generic_spacing"
-                android:textSize="20sp"/>
+                android:textSize="12sp"/>
 
             <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/rating"
-                android:layout_alignLeft="@+id/releaseDate"
-                android:layout_alignStart="@+id/releaseDate"
-                android:layout_below="@+id/releaseDate"
                 style="?android:attr/ratingBarStyleSmall"
                 android:isIndicator="true"
                 android:stepSize="1.25"
-                android:layout_marginTop="@dimen/detail_generic_spacing"
-                android:rating="10"/>
+                android:rating="10"
+                android:layout_alignBottom="@+id/releaseDate"
+                android:layout_toRightOf="@+id/releaseDate"
+                android:layout_toEndOf="@+id/releaseDate"
+                android:layout_marginLeft="61dp"
+                android:layout_marginStart="61dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -78,11 +79,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/overviewTextView"
+                android:text="@string/synopsis"
                 android:layout_below="@+id/posterImageView"
-                android:layout_marginTop="@dimen/detail_generic_spacing"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
-                android:text="@string/synopsis"/>
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
 
 
 

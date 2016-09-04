@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -25,7 +26,6 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -45,23 +45,23 @@ import java.text.SimpleDateFormat;
 /**
  * Created by ege on 3.09.2016.
  */
-public class DetailActivityFragment extends Fragment {
+public class DetailFragment extends Fragment {
 
     private View curView;
-    public Movie movie;
+    public Movies movie;
     RequestQueue mRequestQueue;
     public FloatingActionButton fab;
     public TrailerAdapter trailerAdapter;
     private static String LOG_TAG = "DetailView";
     public LinearLayout trailersList, reviewsList;
     ScrollView scrollView;
-    static DetailActivityFragment instance;
+    static DetailFragment instance;
     static final String YOUTUBE = "http://www.youtube.com/watch?v=";
     private android.support.v7.widget.ShareActionProvider mShareActionProvider;
 
     int scrollId = 0, scrollOverheadId = 0;
 
-    public DetailActivityFragment() {
+    public DetailFragment() {
         instance = this;
     }
 
@@ -73,7 +73,7 @@ public class DetailActivityFragment extends Fragment {
         trailersList = (LinearLayout) curView.findViewById(R.id.trailersList);
         reviewsList = (LinearLayout) curView.findViewById(R.id.reviewsList);
         scrollView = (ScrollView) curView.findViewById(R.id.detailScrollView);
-        Log.v(LOG_TAG, "fragment on create view finished");
+
         return curView;
     }
 
@@ -86,7 +86,7 @@ public class DetailActivityFragment extends Fragment {
         fab.setOnClickListener(new FabOnClick());
         trailerAdapter = new TrailerAdapter(getActivity());
         mRequestQueue = Volley.newRequestQueue(getActivity());
-        Log.v(LOG_TAG, "fragment on activity created finished");
+
         updateUI();
     }
 
@@ -153,17 +153,17 @@ public class DetailActivityFragment extends Fragment {
         }
     }
 
-    public static DetailActivityFragment newInstance(Movie newMovie) {
+    public static DetailFragment newInstance(Movies newMovie) {
         Bundle args = new Bundle();
-        DetailActivityFragment fragment = new DetailActivityFragment();
+        DetailFragment fragment = new DetailFragment();
         args.putParcelable("movie", newMovie);
         fragment.setArguments(args);
         return fragment;
     }
 
     public void updateUI(){
-        MoviesDB moviesDB = new MoviesDB();
-        boolean favStatus = moviesDB.isMovieFavorited(getActivity().getContentResolver(), movie.id);
+        Database database = new Database();
+        boolean favStatus = database.isMovieFavorited(getActivity().getContentResolver(), movie.id);
         if (favStatus)
             fab.setImageDrawable(ContextCompat.getDrawable(getActivity(), android.R.drawable.btn_star_big_on));
         else
@@ -171,7 +171,7 @@ public class DetailActivityFragment extends Fragment {
 
         ((TextView) curView.findViewById(R.id.detailTextView)).setText(movie.display_name);
         Picasso.with(getContext()).load(movie.poster_url).
-                placeholder(R.mipmap.ic_launcher).into((ImageView) curView.findViewById(R.id.posterImageView));
+                placeholder(R.drawable.videoplayer).into((ImageView) curView.findViewById(R.id.posterImageView));
         ((TextView) curView.findViewById(R.id.overviewTextView)).setText(movie.overview);
         ((RatingBar) curView.findViewById(R.id.rating)).setRating(movie.rating / 2f);
         ((TextView) curView.findViewById(R.id.ratingTextView)).setText((float) Math.round(movie.rating*10d)/10d + "/10");
@@ -198,7 +198,7 @@ public class DetailActivityFragment extends Fragment {
         @Override
         public void onClick(View view) {
             ContentResolver contentResolver = getContext().getContentResolver();
-            MoviesDB mdb = new MoviesDB();
+            Database mdb = new Database();
             String message;
             if (mdb.isMovieFavorited(contentResolver, movie.id)){
                 message = "Removed from Favorites";
@@ -209,8 +209,10 @@ public class DetailActivityFragment extends Fragment {
                 message = "Added to favorites";
                 fab.setImageDrawable(ContextCompat.getDrawable(getActivity(), android.R.drawable.btn_star_big_on));
             }
-            (MainActivityFragment.instance).updateFavoritesGrid(); // till I start using a Loader, this one should suffice
-            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+            (MainActivityFragment.instance).updateFavoritesGrid();
+            Snackbar snackbar = Snackbar
+                    .make(trailersList, message, Snackbar.LENGTH_LONG);
+            snackbar.show();
         }
     }
 
@@ -246,7 +248,7 @@ public class DetailActivityFragment extends Fragment {
 
                         if (trailerAdapter.trailers.size() > 0) {
                             try {
-                                mShareActionProvider.setShareIntent(createVideoShareIntent(YOUTUBE +
+                                mShareActionProvider.setShareIntent(ShareTrailer(YOUTUBE +
                                         trailerAdapter.trailers.get(0).url));
                             } catch (NullPointerException e) {
                                 Log.v(LOG_TAG, "Share Action Provider not defined");
@@ -345,7 +347,7 @@ public class DetailActivityFragment extends Fragment {
         });
     }
 
-    public void watchYoutubeVideo(String id){
+    public void watchTrailer(String id){
 
         try{
             Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
@@ -356,7 +358,7 @@ public class DetailActivityFragment extends Fragment {
         }
     }
 
-    private Intent createVideoShareIntent(String url){
+    private Intent ShareTrailer(String url){
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         shareIntent.setType("text/plain");

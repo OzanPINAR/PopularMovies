@@ -3,7 +3,6 @@ package ege.popularmovies;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,7 +31,7 @@ public class MainActivityFragment extends Fragment {
 
     public View mainFragmentView;
     public String LOG_TAG = "ShowcaseFragment";
-    public ArrayList<Movie> movies = new ArrayList<Movie>();
+    public ArrayList<Movies> movies = new ArrayList<Movies>();
     private RequestQueue mRequestQueue;
     public ImageAdapter imageAdapter;
     public static MainActivityFragment instance;
@@ -105,8 +104,8 @@ public class MainActivityFragment extends Fragment {
         public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
             if (isDualPane){
                 android.support.v4.app.FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                DetailActivityFragment detailActivityFragment = DetailActivityFragment.newInstance(movies.get(position));
-                ft.replace(R.id.detailContainer, detailActivityFragment);
+                DetailFragment detailFragment = DetailFragment.newInstance(movies.get(position));
+                ft.replace(R.id.detailContainer, detailFragment);
                 ft.commit();
             } else {
                 Intent intent = new Intent(getContext(), DetailActivity.class);
@@ -138,7 +137,7 @@ public class MainActivityFragment extends Fragment {
                             JSONObject movieObj;
                             for (int i=0; i<items.length(); i++){
                                 movieObj = items.getJSONObject(i);
-                                Movie movie = new Movie();
+                                Movies movie = new Movies();
                                 movie.id = movieObj.getInt("id");
                                 movie.display_name = movieObj.getString("original_title");
                                 movie.overview = movieObj.getString("overview");
@@ -174,8 +173,8 @@ public class MainActivityFragment extends Fragment {
     }
 
     public void getFavorites(){
-        movies.addAll((new MoviesDB()).getFavoriteMovies(getContext().getContentResolver()));
-        for (Movie movie : movies){
+        movies.addAll((new Database()).getFavoriteMovies(getContext().getContentResolver()));
+        for (Movies movie : movies){
             imageAdapter.addItem(movie.poster_url);
         }
         gridview.setAdapter(imageAdapter);

@@ -12,7 +12,7 @@ import ege.popularmovies.MovieContract.MovieEntry;
 /**
  * Created by ege on 3.09.2016.
  */
-public class MoviesDB {
+public class Database {
     static final String AUTHORITY_Uri = "content://" + MovieContract.AUTHORITY;
 
     public boolean isMovieFavorited(ContentResolver contentResolver, int id){
@@ -25,7 +25,7 @@ public class MoviesDB {
         return ret;
     }
 
-    public void addMovie(ContentResolver contentResolver, Movie movie){
+    public void addMovie(ContentResolver contentResolver, Movies movie){
         ContentValues contentValues = new ContentValues();
         contentValues.put(MovieEntry.COLUMN_ID, movie.id);
         contentValues.put(MovieEntry.COLUMN_NAME, movie.display_name);
@@ -41,14 +41,14 @@ public class MoviesDB {
         contentResolver.delete(uri, null, new String[]{id + ""});
     }
 
-    public ArrayList<Movie> getFavoriteMovies(ContentResolver contentResolver){
+    public ArrayList<Movies> getFavoriteMovies(ContentResolver contentResolver){
         Uri uri = Uri.parse(AUTHORITY_Uri + "/movies");
         Cursor cursor = contentResolver.query(uri, null, null, null, null, null);
-        ArrayList <Movie> movies = new ArrayList<>();
+        ArrayList <Movies> movies = new ArrayList<>();
 
         if (cursor != null && cursor.moveToFirst()){
             do {
-                Movie movie = new Movie();
+                Movies movie = new Movies();
                 movie.id = cursor.getInt(cursor.getColumnIndex(MovieEntry.COLUMN_ID));
                 movie.display_name = cursor.getString(cursor.getColumnIndex(MovieEntry.COLUMN_NAME));
                 movie.overview = cursor.getString(cursor.getColumnIndex(MovieEntry.COLUMN_OVERVIEW));

@@ -21,14 +21,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="author"
+                android:text="@string/author"
                 android:id="@+id/reviewAuthor"
-                android:textSize="16dp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="review"
+                android:text="@string/review"
                 android:id="@+id/reviewContent"/>
 
             <TextView

@@ -20,8 +20,8 @@ public class DetailActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ege.popularmovies.Movie movie = getIntent().getParcelableExtra(Intent.EXTRA_TEXT);
-        DetailActivityFragment detailFragment = (DetailActivityFragment) getSupportFragmentManager().findFragmentById(R.id.detailFragment);
+        Movies movie = getIntent().getParcelableExtra(Intent.EXTRA_TEXT);
+        DetailFragment detailFragment = (DetailFragment) getSupportFragmentManager().findFragmentById(R.id.detailFragment);
         detailFragment.movie = movie;
 
     }

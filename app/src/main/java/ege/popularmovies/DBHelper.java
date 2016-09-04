@@ -10,12 +10,12 @@ import ege.popularmovies.MovieContract.MovieEntry;
 /**
  * Created by ege on 3.09.2016.
  */
-public class MovieDBHelper extends SQLiteOpenHelper {
+public class DBHelper extends SQLiteOpenHelper {
 
     static final String DATABASE_NAME = "movies.db";
     static final int DATABASE_VERSION = 1;
 
-    public MovieDBHelper(Context c){
+    public DBHelper(Context c){
         super(c, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

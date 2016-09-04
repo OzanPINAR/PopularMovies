@@ -9,9 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.util.Log;
 
-import ege.popularmovies.MovieContract;
 import ege.popularmovies.MovieContract.MovieEntry;
-import ege.popularmovies.MovieDBHelper;
 
 /**
  * Created by ege on 3.09.2016.
@@ -26,7 +24,7 @@ public class MovieProvider extends ContentProvider {
     }
 
     static String LOG_TAG = "Database";
-    MovieDBHelper DBHelper;
+    ege.popularmovies.DBHelper DBHelper;
     SQLiteDatabase database;
 
     @Override
@@ -68,7 +66,7 @@ public class MovieProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        DBHelper = new MovieDBHelper(getContext());
+        DBHelper = new DBHelper(getContext());
         database = DBHelper.getWritableDatabase();
         return true;
     }
