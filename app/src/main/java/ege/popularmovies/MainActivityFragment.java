@@ -122,14 +122,13 @@ public class MainActivityFragment extends Fragment {
         imageAdapter.clearItems();
         setting_cached = cached;
         if (!cached)
-            getMovies(sortOrder, moreParams);
+            getMovies();
         else
             getFavorites();
     }
 
-    public void getMovies(String sortOrder, String moreParams){
-        String url = "http://api.themoviedb.org/3/discover/movie?sort_by=" + sortOrder + "&" + moreParams
-                + "&api_key=" + DataStore.API_KEY;
+    public void getMovies(){
+        String url = "https://api.themoviedb.org/3/movie/popular?api_key=My_API";
         JsonObjectRequest req = new JsonObjectRequest(url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
