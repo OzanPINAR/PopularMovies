@@ -3,6 +3,7 @@ package ege.popularmovies;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -166,6 +168,9 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d(LOG_TAG, "Error in JSON Parsing");
+                Snackbar snackbar = Snackbar
+                        .make(gridview, "Something went wrong, please check your internet connection and try again!", Snackbar.LENGTH_LONG);
+                snackbar.show();
             }
         });
 
