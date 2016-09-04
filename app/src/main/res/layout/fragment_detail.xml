@@ -45,26 +45,21 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/releaseDate"
                 android:text="@string/dd_mm_yyyy"
-                android:layout_alignTop="@+id/posterImageView"
-                android:layout_toRightOf="@+id/posterImageView"
-                android:layout_toEndOf="@+id/posterImageView"
-                android:layout_marginLeft="@dimen/detail_generic_spacing"
-                android:layout_marginStart="@dimen/detail_generic_spacing"
-                android:textSize="12sp"/>
+                android:textSize="12sp"
+                android:layout_below="@+id/ratingTextView"
+                android:layout_centerHorizontal="true"/>
 
             <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/rating"
-                style="?android:attr/ratingBarStyleSmall"
+                style="?android:attr/ratingBarStyleIndicator"
                 android:isIndicator="true"
                 android:stepSize="1.25"
                 android:rating="10"
-                android:layout_alignBottom="@+id/releaseDate"
-                android:layout_toRightOf="@+id/releaseDate"
-                android:layout_toEndOf="@+id/releaseDate"
-                android:layout_marginLeft="61dp"
-                android:layout_marginStart="61dp"/>
+                android:layout_alignTop="@+id/posterImageView"
+                android:layout_alignLeft="@+id/releaseDate"
+                android:layout_alignStart="@+id/releaseDate"/>
 
             <TextView
                 android:layout_width="wrap_content"
