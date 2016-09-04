@@ -165,9 +165,9 @@ public class DetailFragment extends Fragment {
         Database database = new Database();
         boolean favStatus = database.isMovieFavorited(getActivity().getContentResolver(), movie.id);
         if (favStatus)
-            fab.setImageDrawable(ContextCompat.getDrawable(getActivity(), android.R.drawable.btn_star_big_on));
+            fab.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.like));
         else
-            fab.setImageDrawable(ContextCompat.getDrawable(getActivity(), android.R.drawable.btn_star_big_off));
+            fab.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.heart));
 
         ((TextView) curView.findViewById(R.id.detailTextView)).setText(movie.display_name);
         Picasso.with(getContext()).load(movie.poster_url).

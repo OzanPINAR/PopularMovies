@@ -50,7 +50,7 @@ public class TrailerAdapter extends BaseAdapter {
         Picasso.with(mContext).load("http://img.youtube.com/vi/" + trailers.get(i).url + "/default.jpg")
                 .placeholder(R.drawable.notrailer)
                 .into((ImageView) trailerRow.findViewById(R.id.trailerImage));
-        // youtube thumbnail - http://stackoverflow.com/questions/2068344/how
+
 
         final String url = trailers.get(i).url;
         trailerRow.findViewById(R.id.trailerImage).setOnClickListener(new View.OnClickListener() {
