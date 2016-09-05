@@ -40,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
         MainActivityFragment fragment = MainActivityFragment.instance;
 
         if (id == R.id.action_sort_rating) {
-            MainActivityFragment.sortOrder = "vote_average.desc";
-            MainActivityFragment.moreParams = "vote_count.gte=50&include_video=false";
+            MainActivityFragment.sortOrder = "/movie/top_rated";
+            MainActivityFragment.moreParams = "";
         } else if (id == R.id.action_sort_popularity) {
-            MainActivityFragment.sortOrder = "popularity.desc";
+            MainActivityFragment.sortOrder = "/movie/popular";
             MainActivityFragment.moreParams = "";
         }
         item.setChecked(true);

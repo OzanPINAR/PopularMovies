@@ -5,5 +5,5 @@ package ege.popularmovies;
  */
 public class DataStore {
 
-    public static String API_KEY = "api key";
+    public static String API_KEY = "YOUR_API_KEY";
 }

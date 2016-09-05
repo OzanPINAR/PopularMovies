@@ -41,7 +41,7 @@ public class MainActivityFragment extends Fragment {
     public boolean isDualPane = false;
 
     // static to preserve sorting over orientation changes (activity restart)
-    public static String sortOrder = "popularity.desc", moreParams = "";
+    public static String sortOrder = "/movie/popular", moreParams = "";
     public static boolean setting_cached = false;
     public int gridPos = -1;
 
@@ -128,7 +128,7 @@ public class MainActivityFragment extends Fragment {
     }
 
     public void getMovies(){
-        String url = "https://api.themoviedb.org/3/movie/popular?api_key=My_API";
+        String url = "http://api.themoviedb.org/3" + sortOrder + "?api_key=" + DataStore.API_KEY;
         JsonObjectRequest req = new JsonObjectRequest(url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
