@@ -9,10 +9,10 @@ This app help users to discover the most popular, the highest rated and the high
 **INSTALATION**
 
 Go to DataStore Class and paste your API key.
-public class DataStore {
+
 
     public static String API_KEY = "Paste_your_API_here";
-}
+
 
 **ICON**
 
